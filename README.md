@@ -1,69 +1,73 @@
-# MC DTF Pro v1.0
+# MC DTF Pro v1.1
 
-Herramienta local de MC Creative Studio para preparar imágenes para producción DTF.
+Herramienta local de MC Creative Studio para preparar imágenes DTF: eliminar fondo, limpiar semitransparencias, quitar píxeles basura y exportar archivos listos para producción.
 
-## Funciones v1.0
+## Novedades v1.1
 
-- Eliminación de fondo con IA usando `rembg`.
-- Limpieza de semitransparencias.
-- Eliminación de píxeles basura.
-- Presets para caricatura, diseño normal y logo fuerte.
-- Exportación PNG transparente.
-- Exportación PDF opcional.
-- Semitonos opcionales.
-- Vista previa antes de procesar.
-- Flujo más rápido: no genera PDF ni hace upscale si no se solicita.
+- IA más rápida con sesión `rembg` en caché.
+- Modelo ligero `u2netp` para uso local.
+- Opción para saltar IA cuando el archivo ya trae transparencia.
+- Limpieza más conservadora para caricaturas y diseños con detalles finos.
+- Tiempo total de proceso visible en la interfaz.
+- Logs por etapa en terminal.
+- PDF opcional para evitar esperas innecesarias.
 
-## Instalación en Windows
+## Instalación Windows
 
-Abre CMD dentro de la carpeta del proyecto y ejecuta:
+Desde la carpeta del proyecto:
 
 ```cmd
 cd backend
-python -m pip install --upgrade pip
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 python app.py
 ```
 
-Luego abre:
+Abrir en navegador:
 
 ```text
 http://127.0.0.1:5000
 ```
 
+## Uso recomendado para rapidez
+
+- Quitar fondo con IA: activado solo si la imagen tiene fondo.
+- Alta resolución: Original rápido recomendado.
+- PDF: desactivado hasta el final.
+- Semitono: desactivado hasta que lo necesites.
+- Corte de transparencia: 80.
+- Basura menor a: 3.
+
+## Variables de entorno útiles
+
+```cmd
+set MC_DTF_AI_MAX_SIDE=1800
+set MC_DTF_MAX_UPLOAD_MB=60
+```
+
+Si quieres más velocidad, usa un valor menor:
+
+```cmd
+set MC_DTF_AI_MAX_SIDE=1200
+```
+
 ## Estructura
 
 ```text
-MC-DTF-Pro-v1.0/
-├── backend/
-│   ├── app.py
-│   ├── requirements.txt
-│   ├── services/
-│   ├── templates/
-│   └── static/
-├── docs/
-├── tests/
-├── scripts/
-├── README.md
-├── CHANGELOG.md
-├── LICENSE
-└── .gitignore
+backend/
+  app.py
+  services/
+    config.py
+    image_ops.py
+    pipeline.py
+    exporters.py
+    validators.py
+  templates/
+  static/
+docs/
+scripts/
+tests/
 ```
 
-## Recomendación de uso
+## Licencia
 
-Para diseños con detalles finos usa:
-
-- Preset: Caricatura / detalle fino
-- Alta resolución: Original rápido
-- PDF: apagado hasta que lo necesites
-- Semitonos: apagado hasta que lo necesites
-
-## Próximas versiones
-
-- Procesamiento por lotes.
-- Historial de trabajos.
-- Editor de máscara.
-- Real-ESRGAN para upscale real por IA.
-- Login privado.
-- Docker/VPS para despliegue en `mccreativestudio.me`.
+Software privado de MC Creative Studio.

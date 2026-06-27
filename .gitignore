@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv/
+venv/
+env/
+.DS_Store
+Thumbs.db
+backend/static/uploads/*
+backend/static/outputs/*
+!backend/static/uploads/.gitkeep
+!backend/static/outputs/.gitkeep
+*.zip
